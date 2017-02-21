@@ -11,3 +11,5 @@ you to it.
 
 You could also add new markers to postboxes or anything else to the app so that
 other users can find them.
+
+Up to date installation: <https://hilderonny-whereis.herokuapp.com/>
