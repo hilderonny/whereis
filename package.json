@@ -4,7 +4,7 @@
   "description": "A maps based web application where you can add markers of different types.",
   "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
