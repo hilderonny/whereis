@@ -14,14 +14,8 @@ MongoClient.connect(dbUri, (err, db) => {
         req.db = db;
         next();
     });
-    // Seed database
-    db.collection('markers').deleteMany().then((result) => {
-        var markers = [
-            { name: 'Marker 1' },
-            { name: 'Marker 2' }
-        ]
-        db.collection('markers').insertMany(markers);
-    });
+    // parses body content sent with POST and PUT as JSON and stores it into req.body
+    app.use(require('body-parser').json());
 
     // A call to /db returns a list of all markers in the database
     app.get('/db', function(req, res) {
