@@ -17,24 +17,90 @@
             width: 100%;
             height: 100%;
         }
+        .locateMeControl {
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
+            border-radius: 2px;
+            width: 28px;
+            height: 28px;
+            margin-right: 10px;
+            cursor: pointer;
+            padding:5px;
+        }
+        .locateMeControl > div {
+            width:100%;
+            height:100%;
+            background-image: url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-cookieless-v2-1x.png);
+            background-position-x: -36px;
+        }
+        .locateMeControl > div:hover {
+            background-position-x: -54px;
+        }
+        .locateMeControl.active > div {
+            background-position-x: -144px;
+        }
+        .locateMeControl.active > div:hover {
+            background-position-x: -162px;
+        }
         </style>
         <script src="/js/jquery/jquery.min.js"></script>
         <script>
 
-            function initMap() {
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: 50.977781, lng: 11.323719},
-                    zoom: 17
-                });
-            }
+        var map;
+        var locateMeControl;
+        var locationMarker;
 
-            window.addEventListener('load', function() {
-                $.get('/api/maps/apikey', function(apikey) {
-                    var s = document.createElement('script');
-                    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + apikey + '&callback=initMap';
-                    document.body.appendChild(s);
+        function updateLocationMarker(position) {
+                var googleMapsPos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                if (locationMarker) {
+                    locationMarker.setPosition(googleMapsPos);
+                } else {
+                    locationMarker = new google.maps.Marker({
+                        position:googleMapsPos,
+                        map: map,
+                        icon: 'static/location.png'
+                    });                    
+                }
+        }
+
+        function locateMeControlClick() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    updateLocationMarker(position);
+                    map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
+                    locateMeControl.classList.add('active');
+                }, function() {
+                    locateMeControl.classList.remove('active');
                 });
+                navigator.geolocation.watchPosition(updateLocationMarker);
+            }
+        }
+
+        function initMap() {
+            
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 50.977781, lng: 11.323719},
+                zoom: 17
             });
+
+            locateMeControl = document.createElement('div');
+            locateMeControl.classList.add('locateMeControl');
+            locateMeControl.innerHTML = '<div></div>';
+            locateMeControl.addEventListener('click', locateMeControlClick);
+            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(locateMeControl);
+
+        }
+
+        window.addEventListener('load', function() {
+            $.get('/api/maps/apikey', function(apikey) {
+                var s = document.createElement('script');
+                s.src = 'https://maps.googleapis.com/maps/api/js?key=' + apikey + '&callback=initMap';
+                document.body.appendChild(s);
+            });
+        });
 
         </script>
     </head>
