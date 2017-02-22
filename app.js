@@ -30,8 +30,13 @@ MongoClient.connect(dbUri, (err, db) => {
         });
     });
 
+    // Add API's
+    app.use('/api/maps', require('./server/api/maps'));
+
     // Server static content
     app.use(express.static(__dirname + '/client/html'));
+    app.use('/js/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
+    
     // Start application
     app.listen(port, function() {
         console.log(`Application is running on port ${port}`);

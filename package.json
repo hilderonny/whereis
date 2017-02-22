@@ -18,6 +18,7 @@
   "homepage": "https://github.com/hilderonny/whereis#readme",
   "dependencies": {
     "express": "^4.14.1",
+    "jquery": "^3.1.1",
     "mongodb": "^2.2.24"
   }
 }
