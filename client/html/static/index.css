@@ -1,0 +1,39 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+html,body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#map {
+    width: 100%;
+    height: 100%;
+}
+.locateMeControl {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
+    border-radius: 2px;
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    cursor: pointer;
+    padding:5px;
+}
+.locateMeControl > div {
+    width:100%;
+    height:100%;
+    background-image: url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-cookieless-v2-1x.png);
+    background-position-x: -36px;
+}
+.locateMeControl > div:hover {
+    background-position-x: -54px;
+}
+.locateMeControl.active > div {
+    background-position-x: -144px;
+}
+.locateMeControl.active > div:hover {
+    background-position-x: -162px;
+}
