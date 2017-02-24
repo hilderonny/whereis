@@ -1,3 +1,5 @@
+/******** HTML-Tags *********/
+
 * {
     margin:0;
     padding:0;
@@ -7,11 +9,127 @@ html,body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 14px;
 }
+
+/******** IDs *********/
+
 #map {
     width: 100%;
     height: 100%;
 }
+
+#markerDetailsDialogOverlay .button.add {
+    display: none;
+}
+
+#markerDetailsDialogOverlay.new .button.save, #markerDetailsDialogOverlay.new .button.delete {
+    display: none;
+}
+
+#markerDetailsDialogOverlay.new .button.add {
+    display: initial;
+}
+
+/******** Classes *********/
+
+.button {
+    font-weight: 500;
+    background-color: #E0E0E0;
+    text-transform: uppercase;
+    margin-left: 8px;
+    padding: 12px 16px;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)
+}
+
+.button.primary {
+    background-color: #4285F4;
+    color: #FFFFFF;
+}
+
+.button.warning {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+
+.buttons {
+    display: flex;
+    padding-right: 8px;
+}
+
+.buttons.right {
+    justify-content: flex-end;
+}
+
+.dialogContent {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    transform: translateY(100%);
+}
+
+.dialogContent > .text {
+    margin:16px;
+}
+
+.dialogOverlay {
+    position: fixed;
+    left:0;
+    width:100%;
+    top:0;
+    height:100%;
+    overflow:hidden;
+    pointer-events:none;
+    display:flex;
+    flex-direction: column;
+    background: rgba(0,0,0,0);
+    transition: background .2s;
+}
+
+.dialogOverlay > div {
+    transition: transform .2s;
+    pointer-events:all;
+}
+
+.dialogOverlay.visible {
+    background: rgba(0,0,0,.5);
+}
+
+.dialogOverlay.visible > div {
+    transform: translateY(0);
+}
+
+.dialogTitle {
+    background-color: #4285F4;
+    color: #FFFFFF;
+    display: flex;
+    transform: translateY(-100%);
+    padding: 16px;
+    font-size: 20px;
+}
+
+.dialogTitle > * {
+    display: flex;
+}
+
+.dialogTitle > .title {
+    flex: 1;
+}
+
+.iconbutton {
+    background-size: 24px 24px;
+    height: 24px;
+    width: 24px;
+    margin: auto;
+}
+
+.iconbutton.close {
+    background-image: url(//maps.gstatic.com/mapfiles/maps_lite/images/2x/ic_close_x_white_24dp.png);
+}
+
 .locateMeControl {
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;

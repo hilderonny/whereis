@@ -7,6 +7,23 @@
         <script src="static/index.js"></script>
     </head>
     <body>
+
         <div id="map"></div>
+
+        <div id="markerDetailsDialogOverlay" class="dialogOverlay">
+            <div id="markerDetailsTitle" class="dialogTitle">
+                <div class="title">Markierung hinzufügen</div>
+                <div class="iconbutton close" onclick="closeMarkerDetailsDialog();"></div>
+            </div>
+            <div id="markerDetailsContent" class="dialogContent">
+                <div class="text">Dialoginhalt</div>
+                <div class="buttons right">
+                    <div class="button primary add" onclick="addMarker();">Hinzufügen</div>
+                    <div class="button primary save" onclick="saveMarker();">Speichern</div>
+                    <div class="button warning delete" onclick="deleteMarker();">Löschen</div>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>
